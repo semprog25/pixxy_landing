@@ -12,6 +12,25 @@
         .perspective-1000 { perspective: 1000px; }
         .rotate-y-12 { transform: rotateY(12deg); }
         .rotate-y-n12 { transform: rotateY(-12deg); }
+        
+        /* Mesh Gradient Animation */
+        .mesh-bg {
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+        }
+        
+        /* Glow Effect for button */
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.7);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900 overflow-x-hidden">
@@ -27,123 +46,192 @@
         const THUMB_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20thumb.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSB0aHVtYi5wbmciLCJpYXQiOjE3NjQ4NDA5MDgsImV4cCI6MzM0MTY0MDkwOH0.lDbEO0FYd8bBenCk0kjYaQvRCdWc3H_IV1yiAjAlQl8";
     </script>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-center">
             <div class="flex items-center gap-2">
-                <img id="nav-logo" src="" alt="Pixxy Logo" class="w-8 h-8 rounded-lg shadow-sm">
-                <span class="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Pixxy</span>
+                <img id="nav-logo" src="" alt="Pixxy Logo" class="w-10 h-10 rounded-xl shadow-lg">
+                <span class="font-bold text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Pixxy</span>
             </div>
-            <button onclick="document.getElementById('waitlist-form').scrollIntoView({behavior: 'smooth'})" class="font-semibold text-slate-600 hover:text-blue-600 transition-colors">
-                Join Waitlist
-            </button>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="animate-fade-in-up">
-                <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold tracking-wide uppercase">
+    <section class="min-h-screen pt-32 pb-20 px-4 relative overflow-hidden bg-slate-50">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+             <div class="absolute -top-24 -left-24 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+             <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+             <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-pink-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col justify-center min-h-[60vh]">
+            <div class="animate-fade-in-up space-y-8">
+                <div class="inline-block px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm text-blue-700 text-sm font-bold tracking-wide uppercase">
                     Coming Soon to iOS & Android
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
-                    Photography meets <span class="text-blue-600">Competition</span>.
+                
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                    Photography meets<br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-x bg-[length:200%_auto]">Competition</span>.
                 </h1>
-                <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Level up your photography skills, compete in daily challenges, join crews, and win real rewards. The ultimate gamified camera experience is almost here.
+                
+                <p class="text-xl md:text-2xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
+                    Level up your skills, join crews, and win real rewards. The ultimate gamified camera experience.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" id="hero-form-container">
-                    <form id="hero-form" class="flex w-full max-w-md gap-2">
-                        <input type="email" placeholder="Enter your email" class="flex-1 h-12 px-4 rounded-lg border border-slate-200 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <button type="submit" class="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-lg transition-colors flex items-center justify-center min-w-[140px]">
+                <div class="flex flex-col items-center justify-center gap-6 pt-8" id="hero-form-container">
+                    <form id="hero-form" class="flex flex-col sm:flex-row w-full max-w-lg gap-3 bg-white p-2 rounded-2xl shadow-xl border border-slate-100">
+                        <input type="email" placeholder="Enter your email address" class="flex-1 h-14 px-6 rounded-xl text-lg bg-transparent border-none focus:ring-0 placeholder:text-slate-400 text-slate-900" required>
+                        <button type="submit" class="h-14 px-10 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-xl transition-all btn-glow flex items-center justify-center whitespace-nowrap">
                             <span>Get Early Access</span>
                         </button>
                     </form>
-                    <div id="hero-success" class="hidden items-center gap-2 text-green-600 bg-green-50 px-6 py-3 rounded-xl border border-green-100">
-                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                        <span class="font-semibold text-lg">Thanks! You're on the list.</span>
+                    <div id="hero-success" class="hidden items-center gap-3 text-green-600 bg-green-50 px-8 py-4 rounded-2xl border border-green-100 shadow-lg">
+                        <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+                        <span class="font-bold text-xl">You're on the list! We'll be in touch.</span>
                     </div>
-                </div>
-
-                <!-- Preview Placeholder -->
-                <div class="relative mx-auto w-full max-w-[300px] md:max-w-4xl perspective-1000">
-                   <div class="relative z-10 bg-white rounded-3xl shadow-2xl border-8 border-slate-900 overflow-hidden md:aspect-[16/9] aspect-[9/16] md:w-full md:h-auto md:border-none md:shadow-none md:bg-transparent flex items-center justify-center bg-slate-100">
-                        <img id="hero-logo" src="" alt="Pixxy App" class="w-32 opacity-90">
-                   </div>
+                    <p class="text-sm text-slate-400">Join 2,000+ photographers waiting for launch</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Grid -->
-    <section class="py-20 bg-white">
+    <section class="py-32 bg-white relative z-10">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 className="text-3xl font-bold text-slate-900 mb-4">Why join Pixxy?</h2>
-                <p className="text-slate-600 max-w-2xl mx-auto">We're changing how you take photos. It's not just about the shot; it's about the game.</p>
+            <div class="text-center mb-24">
+                <h2 class="text-4xl font-bold text-slate-900 mb-6">Why Pixxy?</h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">We're changing how you take photos. It's not just about the shot; it's about the game.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-12">
                 <!-- Feature 1 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
-                        <i data-lucide="trophy" class="w-8 h-8 text-yellow-500"></i>
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="trophy" class="w-10 h-10 text-yellow-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Compete & Win</h3>
-                    <p class="text-slate-600 leading-relaxed">Submit your best shots to daily themed challenges. Vote on others and climb the leaderboards.</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Compete & Win</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Submit your best shots to daily themed challenges. Vote on others and climb the leaderboards.</p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
-                        <i data-lucide="users" class="w-8 h-8 text-blue-500"></i>
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="users" class="w-10 h-10 text-blue-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Join Crews</h3>
-                    <p class="text-slate-600 leading-relaxed">Team up with friends or other photographers. Collaborate, compete in crew wars, and dominate together.</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Join Crews</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Team up with friends. Collaborate, compete in crew wars, and dominate the rankings together.</p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
-                        <i data-lucide="star" class="w-8 h-8 text-purple-500"></i>
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="star" class="w-10 h-10 text-purple-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Earn Rewards</h3>
-                    <p class="text-slate-600 leading-relaxed">Gain XP, unlock tiers from Novice to Elite Master, and earn coins to buy power-ups and filters.</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Earn Rewards</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Gain XP, unlock tiers from Novice to Elite Master, and earn coins to buy power-ups and filters.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="bar-chart-2" class="w-10 h-10 text-green-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Real-time Stats</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Track your performance with detailed analytics. See exactly how your photos rank against the community.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="globe-2" class="w-10 h-10 text-cyan-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Global Exposure</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Get your work seen by thousands. Our fair exposure algorithm ensures every photo gets a chance to shine.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-sm mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="zap" class="w-10 h-10 text-orange-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Daily Inspiration</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg">Never run out of ideas. Fresh themes drop every day to test your creativity and push your skills to the limit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section id="waitlist-form" class="py-20 bg-slate-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <div class="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transform rotate-12">
-                <img id="cta-logo" src="" alt="Pixxy" class="w-12 h-12">
+    <!-- App Preview / CTA -->
+    <section id="waitlist-form" class="py-32 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <div class="w-24 h-24 mx-auto mb-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
+                <img id="cta-logo" src="" alt="Pixxy" class="w-14 h-14">
             </div>
-            <h2 class="text-4xl font-bold mb-6">Ready to change your perspective?</h2>
-            <p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+            <h2 class="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Ready to change your perspective?</h2>
+            <p class="text-slate-300 text-xl mb-12 max-w-2xl mx-auto">
                 Be the first to know when Pixxy launches. Join our exclusive waitlist today.
             </p>
             
             <div id="cta-form-container">
-                <form id="cta-form" class="flex flex-col sm:flex-row w-full max-w-md gap-3 mx-auto">
-                    <input type="email" placeholder="Enter your email address" class="flex-1 h-12 px-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <button type="submit" class="h-12 px-8 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors flex items-center justify-center min-w-[120px]">
+                <form id="cta-form" class="flex flex-col sm:flex-row w-full max-w-lg gap-3 mx-auto bg-white/10 p-2 rounded-2xl backdrop-blur-md border border-white/10">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 h-14 px-6 rounded-xl bg-transparent border-none text-white placeholder:text-white/50 text-lg focus:ring-0" required>
+                    <button type="submit" class="h-14 px-10 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg transition-all btn-glow shadow-lg flex items-center justify-center whitespace-nowrap">
                         <span>Join Now</span>
                     </button>
                 </form>
-                <div id="cta-success" class="hidden justify-center items-center gap-2 text-green-400 font-semibold text-lg">
-                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                <div id="cta-success" class="hidden justify-center items-center gap-3 text-green-400 font-bold text-xl mt-8 bg-white/5 py-4 px-8 rounded-2xl inline-flex">
+                    <i data-lucide="check-circle-2" class="w-8 h-8"></i>
                     <span>You are on the waitlist!</span>
+                </div>
+
+                <!-- Download Buttons -->
+                <div class="mt-16 pt-8 border-t border-white/10">
+                    <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-6">Coming Soon</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <!-- App Store Button -->
+                        <button class="group relative flex items-center bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl px-6 py-3 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute inset-0 rounded-xl bg-blue-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <svg class="w-8 h-8 mr-3 fill-white" viewBox="0 0 384 512">
+                                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-22-107.7-61.6-107.7-119.3zM210.3 74.6c18.5-24.5 30.8-56.8 26.5-88.7-27.4 1.7-62.7 20.6-83.6 45.2-18.8 23.1-35.8 58.1-28.3 89.7 29.4 3.2 65.4-21.8 85.4-46.2z"/>
+                            </svg>
+                            <div class="text-left relative z-10">
+                                <div class="text-[10px] uppercase font-medium text-slate-400 leading-none mb-1">Download on the</div>
+                                <div class="text-lg font-bold text-white leading-none">App Store</div>
+                            </div>
+                        </button>
+
+                        <!-- Play Store Button -->
+                        <button class="group relative flex items-center bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl px-6 py-3 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute inset-0 rounded-xl bg-green-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <svg class="w-7 h-7 mr-3" viewBox="0 0 512 512">
+                                <path fill="#34A853" d="M99.6 449.3L7.8 357.5c-3.5-3.5-5.8-8.3-5.8-13.5V44.2c0-5.2 2.3-10 5.8-13.5l91.8-91.8 276.7 260-276.7 250.4z"/>
+                                <path fill="#FBBC04" d="M428.6 277.2L136.9 4.5C130.6-1.4 120.9-1.4 114.6 4.5l-15 14 276.7 260 52.3-49.3z"/>
+                                <path fill="#EA4335" d="M428.6 234.8l-52.3-49.3-276.7 260 15 14c6.3 5.9 16 5.9 22.3 0l291.7-224.7z"/>
+                                <path fill="#4285F4" d="M99.6 62.7v386.6L376.3 256 99.6 62.7z"/>
+                            </svg>
+                            <div class="text-left relative z-10">
+                                <div class="text-[10px] uppercase font-medium text-slate-400 leading-none mb-1">Get it on</div>
+                                <div class="text-lg font-bold text-white leading-none">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 bg-slate-950 text-slate-500 text-center text-sm">
-        <div class="max-w-6xl mx-auto px-4">
-            <p>&copy; 2025 Pixxy. All rights reserved.</p>
+    <footer class="py-12 bg-slate-950 text-slate-500 text-sm border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2 opacity-50">
+                <span class="font-bold text-lg">Pixxy</span>
+                <span>&copy; 2025</span>
+            </div>
+            <div class="flex gap-8">
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="support.html" class="hover:text-white transition-colors">Support</a>
+            </div>
         </div>
     </footer>
 
@@ -153,13 +241,12 @@
 
         // Set Image URLs
         document.getElementById('nav-logo').src = THUMB_URL;
-        document.getElementById('hero-logo').src = LOGO_URL;
         document.getElementById('cta-logo').src = THUMB_URL;
 
         // Form Handling
         async function handleJoinWaitlist(email, btn, successEl, formEl) {
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<span>Joining...</span>';
+            btn.innerHTML = '<span class="animate-pulse">Joining...</span>';
             btn.disabled = true;
 
             try {
