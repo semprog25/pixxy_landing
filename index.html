@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixxy - Gamified Mobile Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .perspective-1000 { perspective: 1000px; }
+        .rotate-y-12 { transform: rotateY(12deg); }
+        .rotate-y-n12 { transform: rotateY(-12deg); }
+    </style>
+</head>
+<body class="bg-white text-slate-900 overflow-x-hidden">
+
+    <!-- Config -->
+    <script>
+        const PROJECT_ID = "fjygzpjvvoqmjafnpheb";
+        const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqeWd6cGp2dm9xbWphZm5waGViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyMzU4NDQsImV4cCI6MjA3OTgxMTg0NH0.d3NCQfmVFtF0XyM0ckvOosRUTsA3lIeTRdKlb3dF7dw";
+        const API_URL = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-e0d353ca/join-waitlist`;
+        
+        // Pixxy Assets
+        const LOGO_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY0ODQwODY5LCJleHAiOjMzNDE2NDA4Njl9.-kUF4Mt-IZg3SNLNQ2KKOYOy1qu7yJfGyd05VXUoGlE";
+        const THUMB_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20thumb.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSB0aHVtYi5wbmciLCJpYXQiOjE3NjQ4NDA5MDgsImV4cCI6MzM0MTY0MDkwOH0.lDbEO0FYd8bBenCk0kjYaQvRCdWc3H_IV1yiAjAlQl8";
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img id="nav-logo" src="" alt="Pixxy Logo" class="w-8 h-8 rounded-lg shadow-sm">
+                <span class="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Pixxy</span>
+            </div>
+            <button onclick="document.getElementById('waitlist-form').scrollIntoView({behavior: 'smooth'})" class="font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+                Join Waitlist
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="animate-fade-in-up">
+                <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold tracking-wide uppercase">
+                    Coming Soon to iOS & Android
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+                    Photography meets <span class="text-blue-600">Competition</span>.
+                </h1>
+                <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Level up your photography skills, compete in daily challenges, join crews, and win real rewards. The ultimate gamified camera experience is almost here.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" id="hero-form-container">
+                    <form id="hero-form" class="flex w-full max-w-md gap-2">
+                        <input type="email" placeholder="Enter your email" class="flex-1 h-12 px-4 rounded-lg border border-slate-200 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <button type="submit" class="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-lg transition-colors flex items-center justify-center min-w-[140px]">
+                            <span>Get Early Access</span>
+                        </button>
+                    </form>
+                    <div id="hero-success" class="hidden items-center gap-2 text-green-600 bg-green-50 px-6 py-3 rounded-xl border border-green-100">
+                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                        <span class="font-semibold text-lg">Thanks! You're on the list.</span>
+                    </div>
+                </div>
+
+                <!-- Preview Placeholder -->
+                <div class="relative mx-auto w-full max-w-[300px] md:max-w-4xl perspective-1000">
+                   <div class="relative z-10 bg-white rounded-3xl shadow-2xl border-8 border-slate-900 overflow-hidden md:aspect-[16/9] aspect-[9/16] md:w-full md:h-auto md:border-none md:shadow-none md:bg-transparent flex items-center justify-center bg-slate-100">
+                        <img id="hero-logo" src="" alt="Pixxy App" class="w-32 opacity-90">
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Why join Pixxy?</h2>
+                <p className="text-slate-600 max-w-2xl mx-auto">We're changing how you take photos. It's not just about the shot; it's about the game.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
+                        <i data-lucide="trophy" class="w-8 h-8 text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Compete & Win</h3>
+                    <p class="text-slate-600 leading-relaxed">Submit your best shots to daily themed challenges. Vote on others and climb the leaderboards.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
+                        <i data-lucide="users" class="w-8 h-8 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Join Crews</h3>
+                    <p class="text-slate-600 leading-relaxed">Team up with friends or other photographers. Collaborate, compete in crew wars, and dominate together.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-white w-16 h-16 rounded-xl flex items-center justify-center shadow-sm mb-6">
+                        <i data-lucide="star" class="w-8 h-8 text-purple-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Earn Rewards</h3>
+                    <p class="text-slate-600 leading-relaxed">Gain XP, unlock tiers from Novice to Elite Master, and earn coins to buy power-ups and filters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="waitlist-form" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transform rotate-12">
+                <img id="cta-logo" src="" alt="Pixxy" class="w-12 h-12">
+            </div>
+            <h2 class="text-4xl font-bold mb-6">Ready to change your perspective?</h2>
+            <p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                Be the first to know when Pixxy launches. Join our exclusive waitlist today.
+            </p>
+            
+            <div id="cta-form-container">
+                <form id="cta-form" class="flex flex-col sm:flex-row w-full max-w-md gap-3 mx-auto">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 h-12 px-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <button type="submit" class="h-12 px-8 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors flex items-center justify-center min-w-[120px]">
+                        <span>Join Now</span>
+                    </button>
+                </form>
+                <div id="cta-success" class="hidden justify-center items-center gap-2 text-green-400 font-semibold text-lg">
+                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                    <span>You are on the waitlist!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 text-slate-500 text-center text-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>&copy; 2025 Pixxy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Set Image URLs
+        document.getElementById('nav-logo').src = THUMB_URL;
+        document.getElementById('hero-logo').src = LOGO_URL;
+        document.getElementById('cta-logo').src = THUMB_URL;
+
+        // Form Handling
+        async function handleJoinWaitlist(email, btn, successEl, formEl) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>Joining...</span>';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ANON_KEY}`
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) throw new Error('Failed to join');
+
+                formEl.classList.add('hidden');
+                successEl.classList.remove('hidden');
+                successEl.classList.add('flex');
+                
+                // Sync other form if needed
+                if(formEl.id === 'hero-form') {
+                    document.getElementById('cta-form').classList.add('hidden');
+                    const s = document.getElementById('cta-success');
+                    s.classList.remove('hidden');
+                    s.classList.add('flex');
+                } else {
+                    document.getElementById('hero-form').classList.add('hidden');
+                    const s = document.getElementById('hero-success');
+                    s.classList.remove('hidden');
+                    s.classList.add('flex');
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert('Something went wrong. Please try again.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById('hero-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            const btn = e.target.querySelector('button');
+            handleJoinWaitlist(email, btn, document.getElementById('hero-success'), e.target);
+        });
+
+        document.getElementById('cta-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            const btn = e.target.querySelector('button');
+            handleJoinWaitlist(email, btn, document.getElementById('cta-success'), e.target);
+        });
+    </script>
+</body>
+</html>
