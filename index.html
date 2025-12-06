@@ -43,7 +43,6 @@
         
         // Pixxy Assets
         const LOGO_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY1MDYwOTU0LCJleHAiOjMzNDE4NjA5NTR9.tOAxxaEnwnNwFiCDy1kJ_sfp6Yj3w-H__rlLHFboVc8";
-        const THUMB_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20thumb.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSB0aHVtYi5wbmciLCJpYXQiOjE3NjQ4NDA5MDgsImV4cCI6MzM0MTY0MDkwOH0.lDbEO0FYd8bBenCk0kjYaQvRCdWc3H_IV1yiAjAlQl8";
     </script>
 
     <!-- Header removed as requested -->
@@ -160,24 +159,22 @@
     </section>
 
     <!-- App Preview / CTA -->
-    <section id="waitlist-form" class="py-32 bg-slate-900 text-white relative overflow-hidden">
+    <section id="waitlist-form" class="py-32 bg-[#050A18] text-white relative overflow-hidden">
         <!-- Background glow -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
 
-        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
-            <div class="w-24 h-24 mx-auto mb-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
-                <img id="cta-logo" src="" alt="Pixxy" class="w-14 h-14">
-            </div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <!-- Thumb removed -->
             <h2 class="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Ready to change your perspective?</h2>
             <p class="text-slate-300 text-xl mb-12 max-w-2xl mx-auto">
                 Be the first to know when Pixxy launches. Join our exclusive waitlist today.
             </p>
             
-            <div id="cta-form-container">
-                <form id="cta-form" class="flex flex-col sm:flex-row w-full max-w-lg gap-3 mx-auto bg-white/10 p-2 rounded-2xl backdrop-blur-md border border-white/10">
-                    <input type="email" placeholder="Enter your email address" class="flex-1 h-14 px-6 rounded-xl bg-transparent border-none text-white placeholder:text-white/50 text-lg focus:ring-0" required>
-                    <button type="submit" class="h-14 px-10 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg transition-all btn-glow shadow-lg flex items-center justify-center whitespace-nowrap">
-                        <span>Join Now</span>
+            <div id="cta-form-container" class="max-w-lg mx-auto">
+                <form id="cta-form" class="flex flex-col sm:flex-row gap-2 bg-[#1E293B]/80 p-2 rounded-full border border-slate-700/50 shadow-2xl shadow-blue-900/20 backdrop-blur-sm">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 h-12 px-6 rounded-full bg-transparent border-none text-white placeholder:text-slate-400 text-base focus:ring-0" required>
+                    <button type="submit" class="h-12 px-8 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base transition-all shadow-lg shadow-blue-600/20 whitespace-nowrap">
+                        Join Now
                     </button>
                 </form>
                 <div id="cta-success" class="hidden justify-center items-center gap-3 text-green-400 font-bold text-xl mt-8 bg-white/5 py-4 px-8 rounded-2xl inline-flex">
@@ -186,8 +183,8 @@
                 </div>
 
                 <!-- Download Buttons -->
-                <div class="mt-16 pt-8 border-t border-white/10">
-                    <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-6">Coming Soon</p>
+                <div class="mt-20">
+                    <p class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-8">Coming Soon</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
                         <!-- App Store Button -->
                         <button class="group relative flex items-center bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl px-6 py-3 transition-all duration-300 hover:-translate-y-1">
@@ -222,8 +219,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-slate-950 text-slate-500 text-sm border-t border-slate-900">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="py-8 bg-[#02040a] text-slate-600 text-xs border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-2 opacity-50">
                 <span class="font-bold text-lg">Pixxy</span>
                 <span>&copy; 2025</span>
@@ -243,8 +240,6 @@
         // Set Image URLs
         const heroLogo = document.getElementById('hero-logo');
         if(heroLogo) heroLogo.src = LOGO_URL;
-        
-        document.getElementById('cta-logo').src = THUMB_URL;
 
         // Form Handling
         async function handleJoinWaitlist(email, btn, successEl, formEl) {

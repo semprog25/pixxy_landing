@@ -200,62 +200,60 @@ export const PixxyLandingPage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-[#0B1024] text-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
-           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-        </div>
+      <section className="py-32 bg-[#050A18] text-white relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-900/20 transform -rotate-3">
-            <img src={pixxyThumbUrl} alt="Pixxy" className="w-14 h-14 drop-shadow-md" />
-          </div>
+          {/* Thumb removed as requested */}
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Ready to change your perspective?</h2>
-          <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to change your perspective?</h2>
+          <p className="text-slate-400 text-xl mb-12 max-w-xl mx-auto leading-relaxed">
             Be the first to know when Pixxy launches. Join our exclusive waitlist today.
           </p>
           
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-md gap-3 mx-auto bg-white/5 p-2 rounded-xl border border-white/10">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 bg-[#1E293B]/80 p-2 rounded-full border border-slate-700/50 shadow-2xl shadow-blue-900/20 backdrop-blur-sm max-w-lg mx-auto">
               <input 
                 type="email" 
                 placeholder="Enter your email address" 
-                className="flex-1 h-12 px-4 rounded-lg bg-transparent border-none text-white placeholder:text-slate-500 focus:outline-none focus:ring-0"
+                className="flex-1 h-14 px-8 rounded-full bg-transparent border-none text-white placeholder:text-slate-400 text-lg focus:outline-none focus:ring-0"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit" className="h-12 px-8 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors whitespace-nowrap">
-                Join Now
+              <button type="submit" className="h-14 px-10 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg transition-all shadow-lg shadow-blue-600/20 whitespace-nowrap" disabled={isLoading}>
+                {isLoading ? "Joining..." : "Join Now"}
               </button>
             </form>
           ) : (
-            <div className="inline-flex items-center gap-2 text-green-400 font-semibold text-lg bg-green-500/10 px-6 py-4 rounded-xl border border-green-500/20">
+            <div className="inline-flex items-center gap-3 text-green-400 font-bold text-lg bg-green-500/10 px-8 py-4 rounded-full border border-green-500/20">
               <CheckCircle2 className="w-6 h-6" />
               <span>You are on the waitlist!</span>
             </div>
           )}
 
-          <div className="mt-20 border-t border-white/5 pt-10">
-            <p className="text-xs font-bold tracking-[0.2em] text-blue-500 uppercase mb-8">Coming Soon</p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <button className="flex items-center gap-3 bg-black border border-white/10 hover:bg-white/5 hover:border-white/30 text-white px-5 py-3 rounded-xl transition-all group">
-                 <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-2.96-.9-3.86-.9-.9 0-2.52.87-3.85.92-1.25.05-2.26-1.27-3.09-2.53-1.68-2.53-2.99-7.2-1.18-10.33 1.79-3.09 5.16-3.23 7.34-0.88l0.48.52c1.5-1.35 4.1-1.65 5.6-0.55 2.11 1.55 2.67 4.58 2.73 4.86-.03.05-4.23 1.47-4.16 5.86.06 4.12 3.59 5.88 3.76 5.98-0.33 1.08-1.04 2.57-1.72 3.58z M13 5c-0.67-3.29 3.56-5.23 3.56-5.23s0.35 2.82-1.64 5.17c-1.92 2.27-3.99 1.48-3.99 1.48s-0.34-3.06 2.07-1.42z" />
+          <div className="mt-24">
+            <p className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-8">Coming Soon</p>
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <button className="flex items-center gap-4 bg-[#02040a] border border-white/10 hover:bg-[#0f1525] hover:border-white/20 text-white px-8 py-4 rounded-2xl transition-all group hover:-translate-y-1 shadow-xl">
+                 <svg className="w-10 h-10 fill-white" viewBox="0 0 384 512">
+                    <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-22-107.7-61.6-107.7-119.3zM210.3 74.6c18.5-24.5 30.8-56.8 26.5-88.7-27.4 1.7-62.7 20.6-83.6 45.2-18.8 23.1-35.8 58.1-28.3 89.7 29.4 3.2 65.4-21.8 85.4-46.2z"/>
                  </svg>
                  <div className="text-left">
-                    <div className="text-[10px] font-medium opacity-60 leading-none mb-1">Download on the</div>
-                    <div className="text-base font-bold leading-none">App Store</div>
+                    <div className="text-[11px] font-bold text-slate-500 uppercase leading-none mb-1.5">Download on the</div>
+                    <div className="text-xl font-bold text-white leading-none">App Store</div>
                  </div>
               </button>
-              <button className="flex items-center gap-3 bg-black border border-white/10 hover:bg-white/5 hover:border-white/30 text-white px-5 py-3 rounded-xl transition-all group">
-                 <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3,20.5V3.5C3,2.91,3.34,2.39,3.84,2.15L13.69,12L3.84,21.85C3.34,21.6,3,21.09,3,20.5 M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12 M20.3,12.56L17.66,15.97L15.39,13.7L17.66,11.44L20.3,14.85C20.5,13.9 20.5,12.91 20.3,12.56 M16.81,8.88L14.54,11.15L6.05,2.66L16.81,8.88Z" />
+              <button className="flex items-center gap-4 bg-[#02040a] border border-white/10 hover:bg-[#0f1525] hover:border-white/20 text-white px-8 py-4 rounded-2xl transition-all group hover:-translate-y-1 shadow-xl">
+                 <svg className="w-9 h-9" viewBox="0 0 512 512">
+                    <path fill="#34A853" d="M99.6 449.3L7.8 357.5c-3.5-3.5-5.8-8.3-5.8-13.5V44.2c0-5.2 2.3-10 5.8-13.5l91.8-91.8 276.7 260-276.7 250.4z"/>
+                    <path fill="#FBBC04" d="M428.6 277.2L136.9 4.5C130.6-1.4 120.9-1.4 114.6 4.5l-15 14 276.7 260 52.3-49.3z"/>
+                    <path fill="#EA4335" d="M428.6 234.8l-52.3-49.3-276.7 260 15 14c6.3 5.9 16 5.9 22.3 0l291.7-224.7z"/>
+                    <path fill="#4285F4" d="M99.6 62.7v386.6L376.3 256 99.6 62.7z"/>
                  </svg>
                  <div className="text-left">
-                    <div className="text-[10px] font-medium opacity-60 leading-none mb-1">GET IT ON</div>
-                    <div className="text-base font-bold leading-none">Google Play</div>
+                    <div className="text-[11px] font-bold text-slate-500 uppercase leading-none mb-1.5">Get it on</div>
+                    <div className="text-xl font-bold text-white leading-none">Google Play</div>
                  </div>
               </button>
             </div>
@@ -264,13 +262,16 @@ export const PixxyLandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-[#050814] text-slate-600 text-center text-sm border-t border-white/5">
-        <div className="max-w-6xl mx-auto px-4">
-          <p>&copy; 2025 Pixxy. All rights reserved.</p>
-          <div className="flex justify-center gap-6 mt-4">
-            <a href="#" className="hover:text-slate-400 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-slate-400 transition-colors">Terms</a>
-            <a href="#" className="hover:text-slate-400 transition-colors">Contact</a>
+      <footer className="py-8 bg-[#02040a] text-slate-600 text-xs border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-slate-500">Pixxy</span>
+            <span className="text-slate-700">&copy; 2025</span>
+          </div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-slate-400 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-slate-400 transition-colors">Support</a>
           </div>
         </div>
       </footer>
