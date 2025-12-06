@@ -41,7 +41,7 @@ export const PixxyLandingPage = () => {
     }
   };
 
-  const pixxyLogoUrl = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY0ODQwODY5LCJleHAiOjMzNDE2NDA4Njl9.-kUF4Mt-IZg3SNLNQ2KKOYOy1qu7yJfGyd05VXUoGlE";
+  const pixxyLogoUrl = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY1MDYwOTU0LCJleHAiOjMzNDE4NjA5NTR9.tOAxxaEnwnNwFiCDy1kJ_sfp6Yj3w-H__rlLHFboVc8";
   const pixxyThumbUrl = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20thumb.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSB0aHVtYi5wbmciLCJpYXQiOjE3NjQ4NDA5MDgsImV4cCI6MzM0MTY0MDkwOH0.lDbEO0FYd8bBenCk0kjYaQvRCdWc3H_IV1yiAjAlQl8";
 
   return (
@@ -57,7 +57,12 @@ export const PixxyLandingPage = () => {
           >
             {/* Logo Centered Above Text */}
             <div className="flex justify-center mb-10">
-              <img src={pixxyLogoUrl} alt="Pixxy" className="h-12 w-auto" />
+              <img 
+                key={pixxyLogoUrl}
+                src={pixxyLogoUrl} 
+                alt="Pixxy" 
+                className="h-20 w-auto" 
+              />
             </div>
 
             <div className="inline-block mb-6 px-5 py-2 rounded-full bg-white border border-slate-100 shadow-sm text-blue-600 text-xs font-bold tracking-wider uppercase">
