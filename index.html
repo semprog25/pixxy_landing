@@ -42,18 +42,13 @@
         const API_URL = `https://${PROJECT_ID}.supabase.co/functions/v1/make-server-e0d353ca/join-waitlist`;
         
         // Pixxy Assets
-        const LOGO_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY0ODQwODY5LCJleHAiOjMzNDE2NDA4Njl9.-kUF4Mt-IZg3SNLNQ2KKOYOy1qu7yJfGyd05VXUoGlE";
+        const LOGO_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY1MDYwOTU0LCJleHAiOjMzNDE4NjA5NTR9.tOAxxaEnwnNwFiCDy1kJ_sfp6Yj3w-H__rlLHFboVc8";
         const THUMB_URL = "https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20thumb.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSB0aHVtYi5wbmciLCJpYXQiOjE3NjQ4NDA5MDgsImV4cCI6MzM0MTY0MDkwOH0.lDbEO0FYd8bBenCk0kjYaQvRCdWc3H_IV1yiAjAlQl8";
     </script>
 
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-transparent">
-        <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-center">
-            <div class="flex items-center gap-2">
-                <img id="nav-logo" src="" alt="Pixxy Logo" class="w-10 h-10 rounded-xl shadow-lg">
-                <span class="font-bold text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Pixxy</span>
-            </div>
-        </div>
+    <!-- Header removed as requested -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-transparent pointer-events-none">
+        <!-- Empty header -->
     </header>
 
     <!-- Hero Section -->
@@ -67,6 +62,12 @@
 
         <div class="max-w-4xl mx-auto text-center relative z-10 flex flex-col justify-center min-h-[60vh]">
             <div class="animate-fade-in-up space-y-8">
+                
+                <!-- Main Logo -->
+                <div class="flex justify-center mb-6">
+                    <img id="hero-logo" src="" alt="Pixxy" class="h-20 w-auto">
+                </div>
+
                 <div class="inline-block px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm text-blue-700 text-sm font-bold tracking-wide uppercase">
                     Coming Soon to iOS & Android
                 </div>
@@ -240,7 +241,9 @@
         lucide.createIcons();
 
         // Set Image URLs
-        document.getElementById('nav-logo').src = THUMB_URL;
+        const heroLogo = document.getElementById('hero-logo');
+        if(heroLogo) heroLogo.src = LOGO_URL;
+        
         document.getElementById('cta-logo').src = THUMB_URL;
 
         // Form Handling
